@@ -27,50 +27,8 @@ function emas_pari_siirto(char, reverse = false) {
 const lopetus = "lopetus";
 
 const emt_dict = {
-    ATT: "isoleusiini",
-    ATC: "isoleusiini",
-    ATA: "isoleusiini",
-    ATG: "metioniini",
-    
-    CTT: "leusiini",
-    CTC: "leusiini",
-    CTA: "leusiini",
-    CTG: "leusiini",
 
-    TTT: "fennylialaniini",
-    TTC: "fennylialaniini",
-    TTA: "leusiini",
-    TTG: "leusiini",
-
-    GTT: "valiini",
-    GTC: "valiini",
-    GTA: "valiini",
-    GTG: "valiini",
-
-    // 1/4 done .....
-
-
-    ACT: "seriini",
-    ACC: "seriini",
-    ACA: "seriini",
-    ACG: "seriini",
-    
-    CCT: "proliini",
-    CCC: "proliini",
-    CCA: "proliini",
-    CCG: "proliini",
-
-    TCT: "treoniini",
-    TCC: "treoniini",
-    TCA: "treoniini",
-    TCG: "treoniini",
-
-    GCT: "alaniini",
-    GCC: "alaniini",
-    GCA: "alaniini",
-    GCG: "alaniini",
-
-    // 2/4
+    // XAX
 
     AAT: "tyrosiini",
     AAC: "tyrosiini",
@@ -92,28 +50,77 @@ const emt_dict = {
     GAA: "glutamiinihappo",
     GAG: "glutamiinihappo",
 
-
-    // 3/4 tehty
-
-    AAT: "kysteiini",
-    AAC: "kysteiini",
-    AAA:  lopetus,
-    AAG:  "tryptofaani",
     
-    CAT: "arganiini",
-    CAC: "arganiini",
-    CAA: "arganiini",
-    CAG: "arganiini",
 
-    TAT: "seriini",
-    TAC: "seriini",
-    TAA: "arganiini",
-    TAG: "arganiini",
+    // XCX
 
-    GAT: "glysiini",
-    GAC: "glysiini",
-    GAA: "glysiini",
-    GAG: "glysiini",
+    ACT: "seriini",
+    ACC: "seriini",
+    ACA: "seriini",
+    ACG: "seriini",
+    
+    CCT: "proliini",
+    CCC: "proliini",
+    CCA: "proliini",
+    CCG: "proliini",
+
+    TCT: "treoniini",
+    TCC: "treoniini",
+    TCA: "treoniini",
+    TCG: "treoniini",
+
+    GCT: "alaniini",
+    GCC: "alaniini",
+    GCA: "alaniini",
+    GCG: "alaniini",
+
+
+
+    // XGX
+
+
+    AGT: "kysteiini",
+    AGC: "kysteiini",
+    AGA:  lopetus,
+    AGG:  "tryptofaani",
+    
+    CGT: "arganiini",
+    CGC: "arganiini",
+    CGA: "arganiini",
+    CGG: "arganiini",
+
+    TGT: "seriini",
+    TGC: "seriini",
+    TGA: "arganiini",
+    TGG: "arganiini",
+
+    GGT: "glysiini",
+    GGC: "glysiini",
+    GGA: "glysiini",
+    GGG: "glysiini",
+
+
+    // XTX
+
+    ATT: "isoleusiini",
+    ATC: "isoleusiini",
+    ATA: "isoleusiini",
+    ATG: "metioniini",
+    
+    CTT: "leusiini",
+    CTC: "leusiini",
+    CTA: "leusiini",
+    CTG: "leusiini",
+
+    TTT: "fennylialaniini",
+    TTC: "fennylialaniini",
+    TTA: "leusiini",
+    TTG: "leusiini",
+
+    GTT: "valiini",
+    GTC: "valiini",
+    GTA: "valiini",
+    GTG: "valiini",
 
 
 }
