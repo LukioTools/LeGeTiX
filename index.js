@@ -160,6 +160,7 @@ function decode_parse(str){
     //let correctly_parsed = 0
     for (let index = 0; index < str_upper.length; index++) {
         const char = str_upper[index];
+        const lower_char = str[index];
         //global one breaks my shit
         let test_result = emt_replace_regex_no_global.test(char);
 
