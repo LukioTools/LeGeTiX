@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.0.js">
+    </script>
+</head>
+<style>
+    div {
+        border: 1px solid black;
+        margin-top: 40px;
+        margin-left: 250px;
+        margin-right: 250px;
+    }
+</style>
+
+<body style="text-align: center">
+    <h2 style="color: green">GeeksforGeeks</h2>
+    <div id="input"></div>
+    <script>
+        function setRange(text) {
+            var r, s;
+            if (document.createRange) {
+                r = document.createRange();
+                r.selectNodeContents(text);
+                r.collapse(false);
+                s = window.getSelection();
+                s.removeAllRanges();
+                s.addRange(r);
+            }
+        }
+
+        // Selecting input tag and applying css to each word
+        $("#input")
+        .prop("contentEditable", true)
+        .on("input", () => {
+            $(this)
+            .contents()
+            .each(() => {
+                var content = this;
+
+                $.each($(this).text().split(""), () => {
+                    // Generating random color each time
+                    //var color = "#" + ((Math.random() * 16777215) | 0).toString(16);
+                    $("<span>")
+                    .text(this)
+                    .css({ color: "#000" })
+                    .insertBefore(content)
+                });
+
+                $(this).remove();
+            });
+
+            // Function to set the end of the text content
+            setRange($("#input"));
+        });
+    </script>
+</body>
+
+</html>

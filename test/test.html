@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colored Letters Input</title>
+    <link rel="stylesheet" href="../main.css">
+    <style>
+        #cst_txt {
+            font-size: 18px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            min-height: 30px;
+            min-width: 100px;
+            display: inline-block;
+            background-color: rgb(24, 23, 23);
+            color: azure;
+        }
+
+        #cst_txt:focus,
+        #cst_txt:focus-visible,
+        #cst_txt:focus-within {
+            background-color: rgb(77, 71, 71);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main_div">
+
+        <div id="horizontal_div">
+            <div id="cst_txt" tabindex="0">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let el = document.getElementById("cst_txt")
+        let previous_event = null;
+        /** 
+         * @type {KeyboardEvent}
+        */
+        function checkFocus() {
+            // check for focus
+            return document.activeElement === el;
+        }
+        const emt_replace_regex = /[^A|C|G|T]/g
+        const emt_replace_regex_no_global = /[^A|C|G|T]/
+        function addChar(char){
+            let upper = char.toUpperCase()
+            //log
+            //console.log(emt_replace_regex_no_global, char, test_result);
+            if(emt_replace_regex_no_global.test(upper)){
+                return `<span class="note red">${upper}</span>`;
+            }
+            else if(char != upper){
+                //mark yellow since wasnt caps
+                return `<span class="note yellow">${upper}</span>`;
+            }
+            else{
+                return`<span class="note green /*cropped*/">${upper}</span>`;
+            }
+        } 
+
+        function addStr(str){
+            let string = "aeea"
+            el.innerHTML += Array.from(str).map((val, idx, array) => {
+                return addChar(val);
+            }).join("");
+        }
+
+
+        function processSpecialCharachters(event) {
+            if (event.keyCode == 8) {
+                console.log(el.lastChild.remove());
+            }
+            if (event.key == " ") {
+                el.innerHTML += event.key;
+            }
+        }
+
+
+        async function pasteClipboard(){
+            let str = await navigator.clipboard.readText();
+            console.log("clipboard: ", str);
+            addStr(str)
+        }
+
+        /** 
+         * @type {KeyboardEvent}
+        */
+        function processNormalCharachters(event) {
+            if(event.key == 'v'){
+                if(previous_event.keyCode == 17){//control
+                    pasteClipboard()
+                }
+            }
+            let key = event.key.toUpperCase();
+            console.log(key);
+
+            el.innerHTML += addChar(key);
+        }
+        document.addEventListener("keydown", (event) => {
+            if (event.defaultPrevented) {
+                return; // Do nothing if the event was already processed
+            }
+            if (!checkFocus()) {
+                return;
+            }
+
+            console.log(event)
+
+            if (!(event.keyCode > 47 && event.keyCode < 91)) {//add charachter
+                processSpecialCharachters(event)
+            }
+            else{
+                processNormalCharachters(event);
+            }
+            previous_event = event;
+        });
+
+    </script>
+</body>
+
+</html>
