@@ -139,13 +139,84 @@ function emt(a,b,c){
 function encode(){
     return "Encoded successfully";
 }
+
+
+const emt_replace_regex = /[^A|C|G|T]/g
+const emt_replace_regex_no_global = /[^A|C|G|T]/
+
+
+const parsed_id = "parsed";
+/**
+ * 
+ * @param {string} str 
+ * @returns 
+ */
+function decode_parse(str){
+    let parsed_el = document.getElementById(parsed_id)
+    let str_upper = str.toUpperCase();
+    
+
+    let parse_out = "";
+    //let correctly_parsed = 0
+    for (let index = 0; index < str_upper.length; index++) {
+        const char = str_upper[index];
+        //global one breaks my shit
+        let test_result = emt_replace_regex_no_global.test(char);
+
+        //log
+        //console.log(emt_replace_regex_no_global, char, test_result);
+        
+        if(test_result){
+            parse_out += `<span class="note red">${char}</span>`;
+        }
+        else if(char != str[index]){
+            //mark yellow since wasnt caps
+            parse_out += `<span class="note yellow">${char}</span>`;
+        }
+        else{
+
+            parse_out += `<span class="note green /*cropped*/">${char}</span>`;
+
+            
+            /*
+            correctly_parsed++;
+            console.log("correctly_parsed: ", correctly_parsed);
+            if(correctly_parsed == 3){
+                let elements = document.getElementsByClassName("cropped");
+                if(elements){
+                    console.log(elements, elements.length);
+                    for (let index = 0; index < elements.length; index++) {
+                        const element = elements[index];
+                        console.log(element, index);
+                        element.classList.remove("cropped")
+                    }
+                }
+                else{
+                    console.log("no elements found")
+                }
+                correctly_parsed = 0;
+            }
+            */
+            
+        }
+    }
+    //display face
+
+    
+    parsed_el.innerHTML = parse_out;
+    //parse_out = str;
+
+
+    let str_parsed=str_upper.replace(emt_replace_regex, '');
+    return str_parsed;
+}
+
 /**
  * 
  * @param {string} str 
  * @param {HTMLElement} output_el 
  */
 function decode_emt(str, output_el) {
-    str = str.replace(' ', '');
     for(let i = 0; i<str.length; i+=3){
         if(str[i+2] == undefined){
             continue;
@@ -175,10 +246,11 @@ function decode(){
      * @type {string}
      */
     let str = input_el.value;
-    str = str.toUpperCase();
     output_el.innerHTML = "";
 
-    decode_emt(str, output_el)
+    let parsed_str= decode_parse(str);
+
+    decode_emt(parsed_str, output_el)
     return "Decoded successfully";
 }
 function refresh_output(){
