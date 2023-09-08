@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genetic Encoder & Decoder</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="index.js"></script>
+</head>
+<body>
+    <div id="main_div">
+
+        <div id="horizontal_div">
+
+            <input type="text" name="in" id="in" placeholder="Decode/Encode a String" oninput="console.log(refresh_output());">
+            <label for="decode">Decode</label>
+            <input type="radio" name="enc/dec" id="decode" value="0" checked="checked">
+            <label for="encode">Encode</label>
+            <input type="radio" name="enc/dec" id="encode" value="1">
+        
+            <p id="out"></p>
+        </div>
+    </div>
+    
+</body>
+</html>
