@@ -170,7 +170,7 @@ function decode_parse(str){
         if(test_result){
             parse_out += `<span class="note red">${char}</span>`;
         }
-        else if(char != str[index]){
+        else if(char != lower_char){
             //mark yellow since wasnt caps
             parse_out += `<span class="note yellow">${char}</span>`;
         }
